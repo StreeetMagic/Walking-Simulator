@@ -1,28 +1,16 @@
-﻿using Source.Services.Inputs;
-using UnityEngine.WSA;
-using Application = UnityEngine.Device.Application;
+﻿using Services.Inputs;
 
-namespace Source.Infrastructure
+namespace Infrastructure
 {
     internal class Game
     {
         public static IInputService InputService;
+        public readonly GameStateMachine StateMachine;
 
         public Game()
         {
-            ReisterInputService();
+            StateMachine = new GameStateMachine();
         }
 
-        private static void ReisterInputService()
-        {
-            if (Application.isEditor)
-            {
-                InputService = new StandaloneInputService();
-            }
-            else
-            {
-                InputService = new MobileInputService();
-            }
-        }
     }
 }
